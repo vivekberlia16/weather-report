@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-sm-3 col-md-3">
 				<div>
-					<table>
+					<table class="table table-striped">
 						<caption>Current Weather Conditions</caption>
 						<tr>
 							<th>Coordinates</th>
@@ -68,19 +68,19 @@
 					id="div{{$index}}">
 					<div ng-click="expandDiv($event,key)" class="dateHeader">  <span class="glyphicon glyphicon-plus"></span> {{key}}
 					</div>
-					<table ng-show="key.isExpanded">
+					<table ng-show="key.isExpanded" class="table table-striped">
 						<th>Time</th>
 						<th>Description</th>
-						<th>Temperature</th>
-						<th>Pressure</th>
-						<th>Humidity</th>
+						<th>Temperature(C)</th>
+						<th>Pressure(hPa)</th>
+						<th>Humidity(%)</th>
 						<tr ng-repeat="tableData in value">
 							<td><span> {{tableData.time}} </span> <img
 								class="weatherIcon"
 								src="http://openweathermap.org/img/w/{{tableData.weather[0].icon}}.png"/></td>
 
 							<td>{{tableData.weather[0].description}}</td>
-							<td>{{tableData.main.temp}}</td>
+							<td>{{convertToCelsius(tableData.main.temp)}}</td>
 							<td>{{tableData.main.pressure}}</td>
 							<td>{{tableData.main.humidity}}</td>
 
@@ -92,6 +92,7 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 <script src="js/lib/angular.min.js"></script>
 <script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>

@@ -116,6 +116,13 @@ module
 								return groups;
 							};
 
+							$scope.convertToCelsius =function(val)
+							{
+								var value = parseFloat(val-273).toFixed(2);
+								console.log("val"+value);
+								return value;
+							}
+							
 							$scope.expandDiv = function($event, key) {
 								console.log("called expand div");
 								// key.isExpanded =!key.isExpanded;

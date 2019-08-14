@@ -12,7 +12,6 @@ input.spacing{
 }
 
 table, th , td  {
-  border: 1px solid grey;
   border-collapse: collapse;
   padding: 5px;
   width : 100%;
@@ -32,11 +31,19 @@ table tr:nth-child(even) {
 	cursor: pointer !important;
 	background-color: lightblue;
 	border: 0.5px solid;
-	border-bottom: 0px;
+	border-color: lightblue;
 	margin-top: 10px;
     padding: 7px;
     font-family: "Proxima Nova";
     font-weight: bolder;
+}
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   color: black;
+   text-align: center;
 }
 
 
