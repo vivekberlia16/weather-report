@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Main Page</title>
+</head>
+<body ng-app="demo" ng-controller="UserController">
+	<hr />
+
+	<div class="container" ng-init=init() class="weatherMain"
+		style='margin-left: 40px;'>
+		<div class="row">
+			<h4 style='margin-left: 20px;'>List of cities</h4>
+			<div class="col-sm-3 col-md-3">
+				<div class="list-group">
+					<a href="#" ng-click="updateWeatherData($event, city)"
+						class="list-group-item"
+						ng-class="{'active': selectedCity == city}"
+						ng-repeat="city in cities"> {{city.Name}}</a>
+				</div>
+			</div>
+			<div class="col-sm-3 col-md-3">
+				<div>
+					<table>
+						<caption>Current Weather Conditions</caption>
+						<tr>
+							<th>Coordinates</th>
+							<td>{{currentWeatherConditions.data.coord.lon}},{{currentWeatherConditions.data.coord.lat}}</td>
+						</tr>
+						<tr>
+							<th>Wind</th>
+							<td>{{currentWeatherConditions.data.wind.speed}} <span>m/s</span>
+								{{currentWeatherConditions.data.wind.deg}}<span> K </span>
+							</td>
+						</tr>
+
+						<tr>
+							<th>Temperature</th>
+							<td>{{currentWeatherConditions.data.main.temp}} K</td>
+						</tr>
+
+						<tr>
+							<th>Pressure</th>
+							<td>{{currentWeatherConditions.data.main.pressure}} hPa</td>
+						</tr>
+
+						<tr>
+							<th>Humidity</th>
+							<td>{{currentWeatherConditions.data.main.humidity}} %</td>
+						</tr>
+
+						<tr>
+							<th>Sunrise</th>
+							<td>{{currentWeatherConditions.data.sys.sunrise}}</td>
+						</tr>
+
+						<tr>
+							<th>Sunset</th>
+							<td>{{currentWeatherConditions.data.sys.sunset }}</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<span > Weather Forecast</span>
+				<div ng-repeat="(key, value) in weatherForeCastGroups.data.list"
+					id="div{{$index}}">
+					<div ng-click="expandDiv($event,key)" class="dateHeader">  <span class="glyphicon glyphicon-plus"></span> {{key}}
+					</div>
+					<table ng-show="key.isExpanded">
+						<th>Time</th>
+						<th>Description</th>
+						<th>Temperature</th>
+						<th>Pressure</th>
+						<th>Humidity</th>
+						<tr ng-repeat="tableData in value">
+							<td><span> {{tableData.time}} </span> <img
+								class="weatherIcon"
+								src="http://openweathermap.org/img/w/{{tableData.weather[0].icon}}.png"/></td>
+
+							<td>{{tableData.weather[0].description}}</td>
+							<td>{{tableData.main.temp}}</td>
+							<td>{{tableData.main.pressure}}</td>
+							<td>{{tableData.main.humidity}}</td>
+
+						</tr>
+					</table>
+
+				</div>
+				<br />
+			</div>
+		</div>
+	</div>
+</body>
+<script src="js/lib/angular.min.js"></script>
+<script src="js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="js/app/app.js"></script>
+<script src="js/app/UserController.js"></script>
+<script src="js/app/WeatherService.js"></script>
+<link rel="stylesheet" href="css/lib/bootstrap.min.css" />
+<link rel="stylesheet" href="css/app/app.css" />
+</html>

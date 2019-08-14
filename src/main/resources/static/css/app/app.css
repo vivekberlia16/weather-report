@@ -1,0 +1,42 @@
+body{
+    background-color: #efefef;
+}
+span.spacing{
+    margin-right: 10px;
+}
+input.custom-width{
+    width: 200px;
+}
+input.spacing{
+    margin-right: 5px;
+}
+
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  width : 100%;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+.weatherMain
+{
+	margin-left : 50px !important;
+}
+.dateHeader
+{
+	cursor: pointer !important;
+	background-color: lightblue;
+	border: 0.5px solid;
+	border-bottom: 0px;
+	margin-top: 10px;
+    padding: 7px;
+    font-family: "Proxima Nova";
+    font-weight: bolder;
+}
+
+
