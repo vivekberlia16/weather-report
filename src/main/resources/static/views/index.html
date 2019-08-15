@@ -11,8 +11,9 @@
 	<div class="container" ng-init=init() class="weatherMain"
 		style='margin-left: 40px;'>
 		<div class="row">
-			<h4 style='margin-left: 20px;'>List of cities</h4>
-			<div class="col-sm-3 col-md-3">
+		
+			<div class="col-sm-3 col-md-3" style="position: fixed;">
+				<h4 style='margin-left: 20px;'>List of cities</h4>
 				<div class="list-group">
 					<a href="#" ng-click="updateWeatherData($event, city)"
 						class="list-group-item"
@@ -20,7 +21,38 @@
 						ng-repeat="city in cities"> {{city.Name}}</a>
 				</div>
 			</div>
-			<div class="col-sm-3 col-md-3">
+				<div class="col-md-6" style="margin-left: 400px;">
+				<span > Weather Forecast</span>
+				<div ng-repeat="(key, value) in weatherForeCastGroups.data.list"
+					id="div{{$index}}">
+					<div ng-click="expandDiv($event,key)"  class="dateHeader">  <span class="glyphicon glyphicon-minus"></span> {{key}}
+					</div>
+					<table class="table table-striped">
+						<th>Time</th>
+						<th>Description</th>
+						<th>Temperature(C)</th>
+						<th>Pressure(hPa)</th>
+						<th>Humidity(%)</th>
+						<tr ng-repeat="tableData in value">
+							<td><span> {{tableData.time}} </span> <img
+								class="weatherIcon"
+								src="http://openweathermap.org/img/w/{{tableData.weather[0].icon}}.png"/></td>
+
+							<td>{{tableData.weather[0].description}}</td>
+							<td>{{convertToCelsius(tableData.main.temp)}}</td>
+							<td>{{tableData.main.pressure}}</td>
+							<td>{{tableData.main.humidity}}</td>
+
+						</tr>
+					</table>
+
+				</div>
+				<br />
+			</div>
+		</div>
+		
+		<div class ="row">
+		<div class="col-sm-3 col-md-3" style=" position: fixed;top: 260px;">
 				<div>
 					<table class="table table-striped">
 						<caption>Current Weather Conditions</caption>
@@ -62,35 +94,8 @@
 					</table>
 				</div>
 			</div>
-			<div class="col-md-6">
-				<span > Weather Forecast</span>
-				<div ng-repeat="(key, value) in weatherForeCastGroups.data.list"
-					id="div{{$index}}">
-					<div ng-click="expandDiv($event,key)" class="dateHeader">  <span class="glyphicon glyphicon-plus"></span> {{key}}
-					</div>
-					<table ng-show="key.isExpanded" class="table table-striped">
-						<th>Time</th>
-						<th>Description</th>
-						<th>Temperature(C)</th>
-						<th>Pressure(hPa)</th>
-						<th>Humidity(%)</th>
-						<tr ng-repeat="tableData in value">
-							<td><span> {{tableData.time}} </span> <img
-								class="weatherIcon"
-								src="http://openweathermap.org/img/w/{{tableData.weather[0].icon}}.png"/></td>
-
-							<td>{{tableData.weather[0].description}}</td>
-							<td>{{convertToCelsius(tableData.main.temp)}}</td>
-							<td>{{tableData.main.pressure}}</td>
-							<td>{{tableData.main.humidity}}</td>
-
-						</tr>
-					</table>
-
-				</div>
-				<br />
-			</div>
 		</div>
+		
 	</div>
 	
 </body>

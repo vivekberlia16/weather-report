@@ -30,6 +30,7 @@ module
 								$scope.loadData($scope.cities[0]);
 
 							}
+							
 							console.log("cities are" + $scope.cities);
 							$scope.skills = [];
 
@@ -119,7 +120,7 @@ module
 							$scope.convertToCelsius =function(val)
 							{
 								var value = parseFloat(val-273).toFixed(2);
-								console.log("val"+value);
+							//	console.log("val"+value);
 								return value;
 							}
 							
@@ -136,7 +137,7 @@ module
 									e.removeClass("ng-hide");
 									e.addClass("ng-show");
 
-								} else if (classList.contains("ng-show")) {
+								} else  {
 									e.removeClass("ng-show");
 									e.addClass("ng-hide");
 
@@ -152,5 +153,5 @@ module
 								}
 
 							};
-
+						
 						} ]);
